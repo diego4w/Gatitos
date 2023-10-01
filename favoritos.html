@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu">
+        <h2>Gatitos 😽</h2>
+        <div class="nav">
+            <a class="a" href="index.html">Home</a>
+            <a class="a azul" href="https://thecatapi.com/">The Cat Api</a>
+            <a class="a roxo" href="favoritos.html">Codigo</a>
+        </div>
+    </div>
+    <h1 style="text-align: center;">Seus gatinhos favoritos 🤩</h1>
+    <div class="secFav" id="res2">
+    </div>
+    <script>
+        const res2 = document.getElementById('res2');
+        let favs = JSON.parse(localStorage.getItem('ids'));
+        
+        for (let f of favs) {
+            fetch(`https://api.thecatapi.com/v1/images/${f.ids}`)
+                .then(T => T.json())
+                .then(user =>{
+                    res2.innerHTML += `
+                    <img src="${user.url}" alt="" style="width: 500px">`;
+                })
+            console.log(f);
+        }
+
+
+    </script>
+</body>
+</html> 
